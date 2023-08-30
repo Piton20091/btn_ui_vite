@@ -1,1 +1,2 @@
-export * from './TextField.tsx';
+export * from './TextField';
+export * from './TextFieldHookForm';

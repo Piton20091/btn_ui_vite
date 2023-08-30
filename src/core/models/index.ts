@@ -1,2 +1,2 @@
-export * from './fields';
 export * from './common';
+export * from './fields';
