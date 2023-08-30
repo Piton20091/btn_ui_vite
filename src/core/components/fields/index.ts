@@ -1,2 +1,3 @@
-export * from './PinField';
-export * from './TextFIeld';
+export * from './InputPin';
+export * from './InputText';
+export * from './InputRadio';

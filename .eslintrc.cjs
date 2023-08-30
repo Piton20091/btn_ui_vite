@@ -1,10 +1,17 @@
 module.exports = {
   root: true,
   env: { browser: true, es2020: true },
-  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'plugin:react-hooks/recommended', 'plugin:react/recommended', 'plugin:import/recommended', 'plugin:jsx-a11y/recommended', 'plugin:@typescript-eslint/recommended', 'eslint-config-prettier', 'plugin:storybook/recommended'],
-  ignorePatterns: ['dist', '.eslintrc.cjs'],
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:@typescript-eslint/recommended',
+  ],
   parser: '@typescript-eslint/parser',
-  plugins: ['react-refresh'],
+  plugins: [
+    'react',
+    'react-hooks',
+    '@typescript-eslint',
+  ],
   settings: {
     react: {
       // Tells eslint-plugin-react to automatically detect the version of React to use.
@@ -19,10 +26,6 @@ module.exports = {
     },
   },
   rules: {
-    'react-refresh/only-export-components': [
-      'warn',
-      { allowConstantExport: true },
-    ],
     'spaced-comment': 'off',
     'quotes': [
       'error',
@@ -50,7 +53,6 @@ module.exports = {
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/prop-types': 'off',
-    'import/named': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-empty-interface': 'off',
     '@typescript-eslint/no-empty-function': 'off',

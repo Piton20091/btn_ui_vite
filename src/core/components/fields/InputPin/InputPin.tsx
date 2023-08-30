@@ -5,11 +5,11 @@ import { useController } from 'react-hook-form';
 import { FieldHint } from 'core/components';
 import { fakeRange, parseValue, replaceCharacter, maxLength } from 'core/utils';
 import { useFieldError } from 'core/hooks';
-import { Parsers, PinFieldActions, UseControllerCoreProps } from 'core/models';
+import { Parsers, InputPinActions, UseControllerCoreProps } from 'core/models';
 
-import { PinFieldItem } from './PinFieldItem';
+import { InputPinItem } from './InputPinItem';
 
-interface PinFieldProps extends UseControllerCoreProps {
+interface InputPinProps extends UseControllerCoreProps {
   length: number;
   name: string;
   parsers?: Parsers;
@@ -18,7 +18,7 @@ interface PinFieldProps extends UseControllerCoreProps {
   classes?: Partial<Record<'root' | 'label' | 'wrapper' | 'item', string>>;
 }
 
-export const PinField = (props: PinFieldProps) => {
+export const InputPin = (props: InputPinProps) => {
   const { autoValue, classes = {}, length, label, control, rules, name, parsers = [] } = props;
 
   const getFieldError = useFieldError();
@@ -35,7 +35,7 @@ export const PinField = (props: PinFieldProps) => {
   });
 
   useEffect(() => {
-    autoValue && handleChange(PinFieldActions.Paste, autoValue.length - 1, autoValue);
+    autoValue && handleChange(InputPinActions.Paste, autoValue.length - 1, autoValue);
   }, [autoValue]);
 
   const errorMessage = getFieldError(error?.message);
@@ -44,26 +44,26 @@ export const PinField = (props: PinFieldProps) => {
     const extendParsers = [maxLength(1), ...parsers];
 
     switch (key) {
-      case PinFieldActions.Delete:
-      case PinFieldActions.Backspace: {
+      case InputPinActions.Delete:
+      case InputPinActions.Backspace: {
         const index = idx === 0 ? 0 : idx - 1;
         return { value: replaceCharacter(value, idx, ' '), idx: index };
       }
 
-      case PinFieldActions.ArrowLeft: {
+      case InputPinActions.ArrowLeft: {
         const index = idx === 0 ? 0 : idx - 1;
         return { value, idx: index };
       }
 
-      case PinFieldActions.ArrowRight: {
+      case InputPinActions.ArrowRight: {
         const index = value.length;
         return { value, idx: index === idx ? index : idx + 1 };
       }
 
-      case PinFieldActions.Paste:
+      case InputPinActions.Paste:
         return { value: parseValue(val, parsers).slice(0, length), idx };
 
-      case PinFieldActions.Focus:
+      case InputPinActions.Focus:
         return { value, idx };
 
       default: {
@@ -90,7 +90,7 @@ export const PinField = (props: PinFieldProps) => {
       {label && <label className={cn('input-pin__label', classes.label)}>{label}</label>}
       <div className={cn('input-pin__wrapper', classes.wrapper)}>
         {fakeRange(length).map((item, idx) => (
-          <PinFieldItem
+          <InputPinItem
             idx={idx}
             selectIdx={selectIdx}
             key={item}

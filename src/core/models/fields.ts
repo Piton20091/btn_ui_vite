@@ -5,7 +5,7 @@ export type ParseValueHandler = (v: string, parsers: Parsers) => string;
 
 export type UseControllerCoreProps = Pick<UseControllerProps, 'control' | 'rules'>;
 
-export enum PinFieldActions {
+export enum InputPinActions {
   Delete = 'Delete',
   Backspace = 'Backspace',
   ArrowRight = 'ArrowRight',

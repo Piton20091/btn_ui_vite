@@ -8,17 +8,17 @@ import {
 import { ControllerRenderProps } from 'react-hook-form';
 
 import { IGNORED_META_KEYS } from 'core/constants';
-import { PinFieldActions } from 'core/models';
+import { InputPinActions } from 'core/models';
 import { trim } from 'core/utils';
 
-interface PinFieldItemProps extends Omit<ControllerRenderProps, 'onChange' | 'ref'> {
+interface InputPinItemProps extends Omit<ControllerRenderProps, 'onChange' | 'ref'> {
   idx: number;
   selectIdx: number | null;
   onChange: (key: string, idx: number, value?: string) => void;
   className?: string;
 }
 
-export const PinFieldItem = (props: PinFieldItemProps) => {
+export const InputPinItem = (props: InputPinItemProps) => {
   const { className, idx, selectIdx, value, name, onChange, onBlur, ...rest } = props;
 
   const ref = useRef<HTMLInputElement>(null);
@@ -42,11 +42,11 @@ export const PinFieldItem = (props: PinFieldItemProps) => {
     }
   };
 
-  const onFocus = () => onChange(PinFieldActions.Focus, idx);
+  const onFocus = () => onChange(InputPinActions.Focus, idx);
 
   const onPaste: ClipboardEventHandler<HTMLInputElement> = (e) => {
     const value = e.clipboardData.getData('Text');
-    onChange(PinFieldActions.Paste, idx, value);
+    onChange(InputPinActions.Paste, idx, value);
   };
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = () => null;

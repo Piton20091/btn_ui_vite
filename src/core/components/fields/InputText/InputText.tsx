@@ -6,7 +6,7 @@ import { FieldHint } from 'core/components';
 import { CoreHandler, Parsers } from 'core/models';
 import { parseValue } from 'core/utils';
 
-export interface TextFieldProps extends Omit<Props, 'onChange' | 'onBlur' | 'onFocus'> {
+export interface InputTextProps extends Omit<Props, 'onChange' | 'onBlur' | 'onFocus'> {
   name: string;
   error?: string;
   hint?: string;
@@ -23,7 +23,7 @@ export interface TextFieldProps extends Omit<Props, 'onChange' | 'onBlur' | 'onF
   onBlur?: CoreHandler<FocusEvent<HTMLInputElement>>;
 }
 
-export const TextField = (props: TextFieldProps) => {
+export const InputText = (props: InputTextProps) => {
   const {
     parsers,
     label,

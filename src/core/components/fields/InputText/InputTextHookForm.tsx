@@ -1,13 +1,13 @@
 import { FocusEvent } from 'react';
 import { useController } from 'react-hook-form';
 
-import { TextFieldProps, TextField } from './TextField';
+import { InputTextProps, InputText } from './InputText.tsx';
 import { CoreHandler, UseControllerCoreProps } from 'core/models';
 import { useFieldError } from 'core/hooks';
 
-type TextFieldHookFormProps = Omit<TextFieldProps, 'value'> & UseControllerCoreProps;
+type InputTextHookFormProps = Omit<InputTextProps, 'value'> & UseControllerCoreProps;
 
-export const TextFieldHookForm = (props: TextFieldHookFormProps) => {
+export const InputTextHookForm = (props: InputTextHookFormProps) => {
   const { name, control, rules, onChange, onBlur, ...rest } = props;
 
   const getFieldError = useFieldError();
@@ -33,7 +33,7 @@ export const TextFieldHookForm = (props: TextFieldHookFormProps) => {
   };
 
   return (
-    <TextField
+    <InputText
       name={name}
       onChange={handleChange}
       value={field.value}
